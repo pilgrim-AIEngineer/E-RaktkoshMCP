@@ -45,4 +45,4 @@ EXPOSE 8080
 # Run the FastMCP server
 # We bind to 0.0.0.0 so Render can reach the app
 # We explicitly call the CLI to override the 'stdio' in your code
-CMD ["sh", "-c", "fastmcp run server.py --transport http --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "fastmcp dev server.py --transport http --host 0.0.0.0 --port $PORT"]
