@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 # We use 3.12 because it is stable for Playwright
-FROM python:3.12-slim-bookworm
+FROM python:3.13
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
