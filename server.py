@@ -22,7 +22,7 @@ try:
 except Exception:
     print("⚠️ Playwright browsers not found. Installing chromium...")
     # Force install Chromium inside the cloud environment
-    subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"]
+    subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"])
 
 # Load environment variables
 load_dotenv()
