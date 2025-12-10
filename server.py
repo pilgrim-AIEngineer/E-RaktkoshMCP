@@ -9,6 +9,20 @@ from models import BloodGroup, StockResult
 from scraper import ERaktKoshScraper
 from utils import save_hierarchy, load_hierarchy, fuzzy_match_state, fuzzy_match_district
 from graph import app as agent_graph
+import sys
+import subprocess
+from fastmcp import FastMCP
+
+# --- ADD THIS BLOCK START ---
+try:
+    from playwright.sync_api import sync_playwright
+    # Dry run to check if browsers are installed
+    with sync_playwright() as p:
+        p.chromium.launch()
+except Exception:
+    print("⚠️ Playwright browsers not found. Installing chromium...")
+    # Force install Chromium inside the cloud environment
+    subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"]
 
 # Load environment variables
 load_dotenv()
