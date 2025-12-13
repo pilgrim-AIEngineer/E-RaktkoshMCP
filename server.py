@@ -159,5 +159,5 @@ async def fetch_stock(location_query: str, blood_group: str, blood_component: st
     """
     return await _fetch_stock(location_query, blood_group, blood_component)
 if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=8000)
+    mcp.run(transport="http", host="0.0.0.0", port=8080)
 
