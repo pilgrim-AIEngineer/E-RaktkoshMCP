@@ -166,6 +166,10 @@ async def fetch_stock(location_query: str, blood_group: str, blood_component: st
 async def health_check(request):
     return JSONResponse({"status": "healthy", "service": "mcp-server"})
 
+@mcp.custom_route("/", methods=["GET"])
+async def root(request):
+    return {"status": "ok", "service": "E-Raktakosh MCP Server"}
+
 middleware = [
     Middleware(
         CORSMiddleware,
