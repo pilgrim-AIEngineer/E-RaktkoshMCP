@@ -168,7 +168,8 @@ async def health_check(request):
 
 @mcp.custom_route("/", methods=["GET"])
 async def root(request):
-    return {"status": "ok", "service": "E-Raktakosh MCP Server"}
+    return JSONResponse({"status": "ok", "service": "mcp-server"})
+
 
 middleware = [
     Middleware(
