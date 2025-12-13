@@ -4,6 +4,9 @@ import os
 import json
 from contextlib import asynccontextmanager
 from typing import Dict, List
+from starlette.responses import JSONResponse
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 
 from models import BloodGroup, StockResult
 from scraper import ERaktKoshScraper
@@ -158,6 +161,19 @@ async def fetch_stock(location_query: str, blood_group: str, blood_component: st
         blood_component: Optional blood component (e.g., "Whole Blood", "Plasma", "Platelets")
     """
     return await _fetch_stock(location_query, blood_group, blood_component)
-if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=8080)
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health_check(request):
+    return JSONResponse({"status": "healthy", "service": "mcp-server"})
+
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+]
+
+http_app = mcp.http_app(middleware=middleware)
 
